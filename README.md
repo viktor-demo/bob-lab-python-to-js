@@ -5,7 +5,7 @@
 ### 1 — Open IBM Bob and create a workspace
 
 1. Launch **IBM Bob** in your IDE
-2. Open a new workspace folder — name it `bob-lab3` (or any name you prefer)
+2. Open a new workspace folder — name it `bob-lab` (or any name you prefer)
    - In VS Code: **File → Open Folder** → create a new empty folder and open it
 
 ### 2 — Clone the lab repository into your workspace
