@@ -189,7 +189,9 @@ Select **Plan Mode** from the mode selector. Plan mode is read-only — Bob won'
 ### 2.2 — Create a feature-by-feature mapping
 
 ```
-Create a detailed translation plan for converting @data_processor.py to Node.js.
+Analyse @data_processor.py and respond in chat with a translation plan for converting it to Node.js.
+Do not create any files — written analysis only.
+
 Include:
 1. Feature-by-feature mapping (Python → JavaScript) for every major construct
 2. npm packages required and why
@@ -214,7 +216,8 @@ Include:
 ### 2.3 — Confirm the dependency list
 
 ```
-What is the minimal set of npm packages needed for this translation?
+Respond in chat only — no files. What is the minimal set of npm packages needed
+to translate @data_processor.py to Node.js?
 Explain why each is required and whether any could be replaced with Node.js built-ins.
 ```
 
@@ -223,7 +226,8 @@ You should land on a single external dependency: `csv-parser`.
 ### 2.4 — Plan error handling equivalences
 
 ```
-Map the Python exception handling in data_processor.py to its JavaScript equivalent.
+Respond in chat only — no files. Map the Python exception handling in @data_processor.py
+to its JavaScript equivalent.
 How should FileNotFoundError, csv.Error, and IOError translate to Node.js patterns?
 ```
 
