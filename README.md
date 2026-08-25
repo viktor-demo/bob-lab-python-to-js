@@ -2,37 +2,32 @@
 
 ## Before You Begin
 
-### 1 — Open IBM Bob and create a workspace
+### 1 — Clone the lab repository
 
-1. Launch **IBM Bob** in your IDE
-2. Open a new workspace folder — name it `bob-lab` (or any name you prefer)
-   - In VS Code: **File → Open Folder** → create a new empty folder and open it
-
-### 2 — Clone the lab repository into your workspace
-
-Open a terminal inside the workspace folder and run:
+Open a terminal, navigate to where you want to work, and run:
 
 ```bash
-git clone https://github.com/viktor-demo/bob-lab-python-to-js.git .
+git clone https://github.com/viktor-demo/bob-lab-python-to-js.git bob-lab
 ```
 
-> The `.` at the end clones the contents directly into your current folder without creating a subfolder.
-
-After cloning you should see:
+This creates a new folder called `bob-lab` with all the lab files inside:
 
 ```
-bob-lab3/
+bob-lab/
 ├── data.csv
 ├── data_processor.py
 └── README.md
 ```
 
-### 3 — Open the folder in your IDE
+### 2 — Open the folder in your IDE
 
-If not already open, open the cloned folder as your workspace root:
+Open the cloned folder as your workspace root:
 - **VS Code:** **File → Open Folder** → select `bob-lab`
+- **Alternative:** `code bob-lab` from the terminal (if the `code` CLI is installed)
 
-The Bob panel on the right should now show the project files. You're ready to start.
+### 3 — Open IBM Bob
+
+The Bob panel should appear on the right side of your IDE. Confirm it shows the project files. You're ready to start.
 
 ---
 
