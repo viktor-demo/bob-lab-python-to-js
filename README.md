@@ -186,6 +186,8 @@ Explain exactly how this method works. What Python idioms are used here that hav
 
 Select **Plan Mode** from the mode selector. Plan mode is read-only — Bob won't create or edit files here. It's designed for thinking through architecture and strategy before you write a single line of code.
 
+> **Note:** In this step Bob responds in chat — no files are created. That's intentional. The output of Plan mode is understanding and alignment, not a document. You carry this analysis into Agent mode in Step 3.
+
 ### 2.2 — Create a feature-by-feature mapping
 
 ```
@@ -200,7 +202,9 @@ Include:
 5. Suggested file and project structure
 ```
 
-**Expected mapping Bob will produce:**
+Bob's response will cover all five areas in one shot — including the single npm dependency (`csv-parser`) and the CommonJS + async/await recommendation. Read through it before moving to Step 3.
+
+**Key mappings to note:**
 
 | Python | JavaScript (Node.js) | Notes |
 |---|---|---|
@@ -213,23 +217,15 @@ Include:
 | `if __name__ == '__main__'` | `if (require.main === module)` | CommonJS guard |
 | `_is_numeric(value)` | `_isNumeric(value)` | camelCase convention |
 
-### 2.3 — Confirm the dependency list
-
-```
-Respond in chat only — no files. What is the minimal set of npm packages needed
-to translate @data_processor.py to Node.js?
-Explain why each is required and whether any could be replaced with Node.js built-ins.
-```
-
-You should land on a single external dependency: `csv-parser`.
-
-### 2.4 — Plan error handling equivalences
+### 2.3 — Plan error handling equivalences (Optional)
 
 ```
 Respond in chat only — no files. Map the Python exception handling in @data_processor.py
 to its JavaScript equivalent.
 How should FileNotFoundError, csv.Error, and IOError translate to Node.js patterns?
 ```
+
+> **Optional:** Bob's answer to 2.2 already covers the key decisions. This prompt goes deeper on error handling specifically — useful if your team wants to understand how Python's typed exceptions (`FileNotFoundError`, `csv.Error`, `IOError`) map to Node.js patterns before implementing.
 
 > **Why Plan mode matters here:** By thinking through the full mapping before writing code, you avoid mid-implementation surprises — like discovering midway that Python's sync CSV reading needs a completely different async pattern in Node.js.
 
