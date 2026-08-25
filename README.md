@@ -290,6 +290,8 @@ What are the trade-offs between the two approaches for this use case?
 
 This demonstrates that Bob can explain its own implementation decisions — useful when you need to justify or defend generated code to a colleague or reviewer.
 
+> **Optional — Bonus prompts:** Steps 3.5, 3.6, and 3.7 are independent of each other. Run any or all of them depending on time. Each covers a distinct translation challenge and can be revisited after the lab.
+
 ### 3.5 — Understand the statistical calculations translation
 
 ```
@@ -310,8 +312,6 @@ What's the difference between Python's synchronous file writing and JavaScript's
 Explain how you translated Python's if __name__ == '__main__' pattern to JavaScript.
 Why did you use an async IIFE (Immediately Invoked Function Expression)?
 ```
-
-> **Optional — Bonus prompts:** Steps 3.5, 3.6, and 3.7 are independent of each other. Run any or all of them depending on time. Each covers a distinct translation challenge and can be revisited after the lab.
 
 ### 3.8 — Extend with Inline Chat (Optional)
 
