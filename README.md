@@ -1,4 +1,4 @@
-# Lab 3 — Python to JavaScript Code Translation
+# Lab — Python to JavaScript Code Translation
 
 ## Overview
 
@@ -56,7 +56,7 @@ Before starting, ensure you have:
 ## Lab Structure
 
 ```
-Lab 3 Timeline (45 minutes)
+Lab Timeline (45 minutes)
 ├── Setup:  Initialize Bob with /init           (3 min)
 ├── Step 1: Analyse Python Code — Ask Mode     (10 min)
 ├── Step 2: Plan Translation Strategy — Plan Mode (10 min)
