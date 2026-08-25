@@ -1,10 +1,46 @@
 # Lab — Python to JavaScript Code Translation
 
+## Before You Begin
+
+### 1 — Open IBM Bob and create a workspace
+
+1. Launch **IBM Bob** in your IDE
+2. Open a new workspace folder — name it `bob-lab3` (or any name you prefer)
+   - In VS Code: **File → Open Folder** → create a new empty folder and open it
+
+### 2 — Clone the lab repository into your workspace
+
+Open a terminal inside the workspace folder and run:
+
+```bash
+git clone https://github.com/viktor-demo/bob-lab-python-to-js.git .
+```
+
+> The `.` at the end clones the contents directly into your current folder without creating a subfolder.
+
+After cloning you should see:
+
+```
+bob-lab3/
+├── data.csv
+├── data_processor.py
+└── README.md
+```
+
+### 3 — Open the folder in your IDE
+
+If not already open, open the cloned folder as your workspace root:
+- **VS Code:** **File → Open Folder** → select `bob-lab3`
+
+The Bob panel on the right should now show the project files. You're ready to start.
+
+---
+
 ## Overview
 
 In this lab, you'll use **IBM Bob** to translate a Python data processing script to JavaScript (Node.js), maintaining full functionality while applying language-specific best practices.
 
-You'll work across all three of Bob's modes — **Ask**, **Plan**, and **Agent** — and use Bob's real capabilities like `/init`, `/review`, `@` context mentions, and `⌘+L` inline selection to see how Bob handles a realistic translation workflow end to end.
+You'll work across all three of Bob's modes — **Ask**, **Plan**, and **Agent** — and use Bob's real capabilities like `/init`, `/review`, `@` context mentions, and Move to Chat (`Cmd+L` / `Ctrl+L`) to see how Bob handles a realistic translation workflow end to end.
 
 > **Bob Differentiator — Intelligent Model Selection**
 > Bob automatically routes each task to the most appropriate underlying model. Complex reasoning tasks (like mapping Python context managers to Node.js async streams) get a frontier model; simpler syntax questions use a lighter one. This happens transparently behind every prompt.
@@ -131,15 +167,21 @@ Focus on: file I/O, CSV parsing, type hints, list comprehensions, and sync vs as
 | List comprehensions | Replace with `Array.map()` / `Array.filter()` |
 | Sync file I/O | Node.js I/O is async by default |
 
-### 1.4 — Highlight a specific section with ⌘+L
+### 1.4 — Highlight a specific section with Move to Chat
 
-Open `data_processor.py` in your editor. Highlight the `calculate_statistics` method (lines 66–115), then press **`⌘+L`** to add the selection directly to the Bob chat. Then ask:
+Open `data_processor.py` in your editor. Highlight the `calculate_statistics` method (lines 66–115), then use the **Move to Chat** shortcut to send it directly to Bob:
+
+- **macOS:** `Cmd` + `L`
+- **Windows / Linux:** `Ctrl` + `L`
+- **Alternative (all platforms):** right-click the selection → **Move to Chat**, or use the lightbulb (💡) menu
+
+Then ask:
 
 ```
 Explain exactly how this method works. What Python idioms are used here that have no direct JavaScript equivalent?
 ```
 
-> **Bob feature — `⌘+L` inline selection:** Highlights any text in the editor and sends it to Bob as a focused context snippet — faster than switching tabs or copy-pasting.
+> **Bob feature — Move to Chat (`Cmd+L` / `Ctrl+L`):** Selects any code in the editor and sends it to the Bob chat panel with full context (file path + line numbers) — no copy-paste, no tab switching. You can also trigger it via the right-click context menu → **Move to Chat**, or via the lightbulb (💡) code actions menu that appears on selection.
 
 ---
 
@@ -215,6 +257,16 @@ Review and approve the file write when Bob proposes it.
 
 ### 3.3 — Translate the full class
 
+Type the following rough prompt into the chat input — but **don't send it yet**:
+
+```
+translate data_processor.py to javascript
+```
+
+> **Optional — Prompt Enhancement:** Before sending, click the ✨ sparkle button that appears in the chat input field. Bob will rewrite your rough prompt into a detailed, specific one — adding requirements like async/await, JSDoc, camelCase naming, error handling, and module format. Compare the before and after to see the difference. This feature must be enabled first: go to **Bob Settings → General → Enable prompt enhancement**.
+>
+> Whether you use enhancement or not, make sure the final prompt sent to Bob includes these requirements:
+
 ```
 Using the translation plan we designed, translate the entire DataProcessor class
 from @data_processor.py to JavaScript (Node.js).
@@ -232,18 +284,64 @@ Requirements:
 
 Bob will create `data_processor.js`. Review the proposed file before approving.
 
-### 3.4 — Understand a specific translation decision
+### 3.4 — Understand the file I/O translation
 
-Highlight the `loadData()` method in the newly created `data_processor.js`, press **`⌘+L`**, and ask:
+Highlight the `loadData()` method in `data_processor.js` and press **`Cmd+L`** (macOS) or **`Ctrl+L`** (Windows/Linux) to send it to Bob, then ask:
 
 ```
 Why did you use createReadStream + csv-parser instead of fs.promises.readFile here?
 What are the trade-offs between the two approaches for this use case?
 ```
 
-This demonstrates that Bob can explain its own implementation decisions — useful for developers who need to justify or defend the generated code.
+This demonstrates that Bob can explain its own implementation decisions — useful when you need to justify or defend generated code to a colleague or reviewer.
 
-### 3.5 — Run the JavaScript version
+### 3.5 — Understand the statistical calculations translation
+
+```
+Explain how you translated the calculate_statistics method.
+How did you convert Python's list comprehensions and built-in functions to JavaScript?
+```
+
+### 3.6 — Understand the JSON export translation
+
+```
+Explain how you translated the export_results method.
+What's the difference between Python's synchronous file writing and JavaScript's async approach?
+```
+
+### 3.7 — Understand the main execution logic
+
+```
+Explain how you translated Python's if __name__ == '__main__' pattern to JavaScript.
+Why did you use an async IIFE (Immediately Invoked Function Expression)?
+```
+
+> **Optional — Bonus prompts:** Steps 3.5, 3.6, and 3.7 are independent of each other. Run any or all of them depending on time. Each covers a distinct translation challenge and can be revisited after the lab.
+
+### 3.8 — Extend with Inline Chat (Optional)
+
+Now that `data_processor.js` exists, try a surgical edit without ever leaving the file.
+
+1. Open `data_processor.js` in your editor
+2. Place your cursor inside the `calculateStatistics()` method, after the existing stats are built
+3. Trigger **Inline Chat**:
+   - **macOS:** `Cmd` + `K`
+   - **Windows / Linux:** `Ctrl` + `K`
+   - **Alternative (all platforms):** right-click in the editor → **Inline Chat**, or use the lightbulb (💡) menu
+4. Type the following directly in the inline chat interface:
+
+```
+Add a median calculation to the stats for each numeric field.
+Expected results for data.csv: age median = 26.5, score median = 90.4
+```
+
+Bob will show an inline diff with the new `median` field added to each stats object. Review the change in-place, then:
+- **Accept:** `Cmd+Enter` (macOS) / `Ctrl+Enter` (Windows/Linux)
+- **Reject:** close the inline chat without accepting
+
+> **Bob feature — Inline Chat (`Cmd+K` / `Ctrl+K`):** Opens a chat interface directly in the editor at your cursor — no panel switching, no copy-paste. The result appears as an inline diff you accept or reject before it's written. Ideal for targeted, single-method edits when you don't need the full chat panel context.
+
+### 3.9 — Run the JavaScript version
 
 Install dependencies and run the script. In your terminal:
 
@@ -252,7 +350,7 @@ npm install
 node data_processor.js
 ```
 
-### 3.6 — Fix errors with `@terminal`
+### 3.10 — Fix errors with `@terminal`
 
 If you see any errors in the terminal output, stay in Agent mode and use `@terminal` instead of copy-pasting the error:
 
@@ -262,7 +360,7 @@ If you see any errors in the terminal output, stay in Agent mode and use `@termi
 
 > **Bob feature — `@terminal`:** Sends the most recent terminal output directly into the conversation as context. Bob reads the exact error, not your description of it. This is significantly faster than copy-pasting stack traces.
 
-### 3.7 — Fix any IDE diagnostics with `@problems`
+### 3.11 — Fix any IDE diagnostics with `@problems`
 
 If your IDE shows red underlines in `data_processor.js`, use:
 
@@ -356,9 +454,11 @@ Both versions should produce:
 | **Plan mode** | Step 2 | Architecture and strategy design — no file changes |
 | **Agent mode** | Step 3 | Reads, writes, and executes — full implementation |
 | `@filename` mention | Steps 1, 3, 4 | Pins a file's contents into the conversation as context |
-| `⌘+L` selection | Steps 1, 3 | Sends a highlighted code selection directly to Bob |
-| `@terminal` | Step 3.6 | Sends recent terminal output to Bob for debugging |
-| `@problems` | Step 3.7 | Sends IDE diagnostics to Bob for bulk fixing |
+| `Cmd+L` / `Ctrl+L` (Move to Chat) | Steps 1, 3 | Sends highlighted code to Bob with file path + line numbers |
+| ✨ Prompt Enhancement | Step 3.3 (optional) | Rewrites a rough prompt into a detailed one before sending |
+| `Cmd+K` / `Ctrl+K` (Inline Chat) | Step 3.8 (optional) | Chat interface directly in the editor — inline diff, no panel switching |
+| `@terminal` | Step 3.10 | Sends recent terminal output to Bob for debugging |
+| `@problems` | Step 3.11 | Sends IDE diagnostics to Bob for bulk fixing |
 | `/review` | Step 4.3 | Runs a full code review: bugs, security, performance, style |
 
 ---
