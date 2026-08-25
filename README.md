@@ -30,7 +30,7 @@ bob-lab3/
 ### 3 — Open the folder in your IDE
 
 If not already open, open the cloned folder as your workspace root:
-- **VS Code:** **File → Open Folder** → select `bob-lab3`
+- **VS Code:** **File → Open Folder** → select `bob-lab`
 
 The Bob panel on the right should now show the project files. You're ready to start.
 
